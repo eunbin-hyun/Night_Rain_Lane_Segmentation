@@ -17,7 +17,7 @@
 
 ### 💻 Software
 - **OpenCV** – 이미지 전처리(CLAHE), 영상 처리
-- **YOLOv8 Segmentation** – 실시간 차선·객체 인식
+- **YOLOv11 Segmentation** – 실시간 차선·객체 인식
 
 <br>
 
