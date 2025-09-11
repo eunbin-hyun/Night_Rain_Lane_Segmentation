@@ -13,8 +13,10 @@
 | **Polarizing Film** – 야간·우천 시 반사광 억제 |
 
 
+## Result
+
 ![실험결과](https://github.com/user-attachments/assets/4081d63d-472c-45de-b7b9-aaa58de9d0db) | ![테스트결과](https://github.com/user-attachments/assets/6cd59bf0-0dfb-47d3-9dc9-9e2668c0296a)
 ---|---|
-|📊 ## 성능 비교 | 🧪 ## 실험 결과 |
+|##📊 성능 비교 | ##🧪 실험 결과 |
 |- 개선 버전: OpenCV 전처리 + 편광필름 적용 | - 야간·우천 환경 모두에서 **yellow_line, white_line을 안정적으로 검출**|
-|- 기존 모델 대비 재현율(Recall) **28.7% ↑**, mAP50 **11.2% ↑** | - 실시간 테스트에서 FPS xx.xx, IoU xx% 달성|
+|- 기존 모델 대비 재현율(Recall) **28.7% ↑**, mAP50 **11.2% ↑** | - 실시간 테스트에서 FPS 1.54 달성|
