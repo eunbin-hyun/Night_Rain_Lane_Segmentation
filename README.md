@@ -15,7 +15,7 @@
 
 ## 🏁 Result
 
-![실험결과](https://github.com/user-attachments/assets/4081d63d-472c-45de-b7b9-aaa58de9d0db) | ![테스트결과](https://github.com/user-attachments/assets/6cd59bf0-0dfb-47d3-9dc9-9e2668c0296a)
+![실험결과](https://github.com/user-attachments/assets/45b5baf6-c1b4-47af-8f1f-879dd02035cf) | ![테스트결과](https://github.com/user-attachments/assets/8c406475-1547-45e0-9e92-2bac298b65ad)
 ---|---|
 |📊 **성능 비교**|🧪 **실험 결과** |
 |- 개선 버전: OpenCV 전처리 + 편광필름 적용 | - 야간·우천 환경 모두에서 **yellow_line, white_line을 안정적으로 검출**|
