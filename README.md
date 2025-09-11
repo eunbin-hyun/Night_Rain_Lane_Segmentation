@@ -12,7 +12,6 @@
 | **Picamera v3** – YOLO Segmentation 입력 영상 수집 | **YOLOv11 Segmentation** – 실시간 차선·객체 인식 |
 | **Polarizing Film** – 야간·우천 시 반사광 억제 |
 
----
 
 ## 🏁 Result
 
