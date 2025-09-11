@@ -3,6 +3,14 @@
 
 ![기존한계](https://github.com/user-attachments/assets/afbeddcf-9f4a-4b7b-aa4e-e9979ec06bbe) | ![아이디어](https://github.com/user-attachments/assets/455fb96a-5079-43e5-87d7-5b11186ee26c)
 ---|---|
+## ⚙️ Tech Stack
+
+| **Hardware** | **Software** |
+|--------------|--------------|
+| **Raspberry Pi 5** – 실시간 영상 처리 및 AI 모델 추론 | **OpenCV** – 이미지 전처리(CLAHE), 영상 처리 |
+| **Picamera v3** – YOLO Segmentation 입력 영상 수집 | **YOLOv8 Segmentation** – 실시간 차선·객체 인식 |
+| **Polarizing Film** – 야간·우천 시 반사광 억제 |
+
 
 🚀 Hardware
 
