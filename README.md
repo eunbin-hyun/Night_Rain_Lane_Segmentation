@@ -4,13 +4,16 @@
 ![기존한계](https://github.com/user-attachments/assets/afbeddcf-9f4a-4b7b-aa4e-e9979ec06bbe) | ![아이디어](https://github.com/user-attachments/assets/455fb96a-5079-43e5-87d7-5b11186ee26c)
 ---|---|
 
-## ⚙️ Tech Stack
+# ⚙️ Tech Stack
+## 🚀 Hardware
+- **Raspberry Pi 5** – 실시간 영상 처리 및 AI 모델 추론
+- **Picamera v3** – YOLO Segmentation 입력 영상 수집
+- **Polarizing Film** – 야간·우천 시 반사광 억제
 
-| 🚀**Hardware** | 💻**Software** |
-|--------------|--------------|
-| **Raspberry Pi 5** – 실시간 영상 처리 및 AI 모델 추론| **OpenCV** – 이미지 전처리(CLAHE), 밝기조절 |
-|  **Picamera v3** – YOLO Segmentation 입력 영상 수집 | **YOLOv11 Segmentation** – 실시간 차선·객체 인식 |
-| **Polarizing Film** – 야간·우천 시 반사광 억제 |
+## 💻 Software
+- **OpenCV** – 이미지 전처리(CLAHE), 영상 처리
+- **YOLOv8 Segmentation** – 실시간 차선·객체 인식
+- **ONNX / Hailo DFC** – 모델 최적화 및 Hailo-8L NPU 추론
 
 
 ## 🏁 Result
