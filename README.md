@@ -7,5 +7,5 @@
 HW: 라즈베리파이5,  카메라(picam), 편광필름
 SW:  OpenCv, AI(segmentation)
 
-![실험결과](https://github.com/user-attachments/assets/d079310d-5e2c-4c35-abd8-174dc4fa11b5) | ![테스트결과](https://github.com/user-attachments/assets/6cd59bf0-0dfb-47d3-9dc9-9e2668c0296a)
+![실험결과](https://github.com/user-attachments/assets/4081d63d-472c-45de-b7b9-aaa58de9d0db) | ![테스트결과](https://github.com/user-attachments/assets/6cd59bf0-0dfb-47d3-9dc9-9e2668c0296a)
 ---|---|
