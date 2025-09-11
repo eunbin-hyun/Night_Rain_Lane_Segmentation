@@ -27,5 +27,5 @@
 ![실험결과](https://github.com/user-attachments/assets/45b5baf6-c1b4-47af-8f1f-879dd02035cf) | ![테스트결과](https://github.com/user-attachments/assets/8c406475-1547-45e0-9e92-2bac298b65ad)
 ---|---|
 |📊 **성능 비교**|🧪 **실험 결과** |
-|- 개선 버전: OpenCV 전처리 + 편광필름 적용 | - 야간·우천 환경 모두에서 **yellow_line, white_line을 안정적으로 검출**|
-|- 기존 모델 대비 재현율(Recall) **28.7% ↑**, mAP50 **11.2% ↑** | - 실시간 테스트에서 FPS 1.54 달성|
+| 개선 버전: OpenCV 전처리 + 편광필름 적용 | 야간·우천 환경 모두에서 **yellow_line, white_line을 안정적으로 검출**|
+| 기존 모델 대비 재현율(Recall) **28.7% ↑**, mAP50 **11.2% ↑** | 실시간 테스트에서 FPS 1.54 달성|
