@@ -12,7 +12,7 @@ picam2.configure("preview")
 picam2.start()
 
 # YOLO 모델 로드
-model = YOLO("bestv5segn.pt")
+model = YOLO("bestsegn.pt")
 yolo_classes = list(model.names.values())
 
 # CLAHE 객체 생성
