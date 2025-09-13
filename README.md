@@ -13,7 +13,6 @@
 ### 🚀 Hardware
 - **Raspberry Pi 5** – 실시간 영상 처리 및 AI 모델 추론
 - **Picamera v3** – YOLO Segmentation 입력 영상 수집
-- **Polarizing Film** – 야간·우천 시 반사광 억제
 
 ### 💻 Software
 - **OpenCV** – 이미지 전처리(CLAHE), 영상 처리
