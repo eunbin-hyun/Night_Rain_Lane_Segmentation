@@ -85,9 +85,11 @@
   - [발표자료](./docs/capstone/presentation.pdf)
 - **2025 한국전기전자학회 하계학술대회 제1저자·발표자**
   - 논문: 「야간 및 악천후 환경에서의 딥러닝 기반 실시간 차선 인식 시스템」
+  - 연구 요약: 편광필름과 CLAHE 전처리, YOLO11n-seg를 결합해 Raspberry Pi 5에서 야간·악천후 차선을 실시간으로 인식
   - [논문](./docs/raspberry-pi/paper.pdf) · [포스터](./docs/raspberry-pi/poster.pdf)
 - **제27회 전자정보통신 학술대회 제1저자·발표자**
   - 논문: 「야간 및 악천후 환경에서의 차선 인식용 세그멘테이션 모델 비교」
+  - 연구 요약: Jetson Orin Nano에서 YOLO11n-seg와 BiSeNetV2의 정확도·추론 속도를 비교하고 TensorRT FP16으로 최적화
   - [논문](./docs/jetson-orin-nano/paper.pdf) · [발표자료](./docs/jetson-orin-nano/presentation.pdf)
 
 ## 저장소 구조
