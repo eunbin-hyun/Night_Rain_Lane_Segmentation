@@ -1,47 +1,79 @@
 # 🌧️ Night & Rain Lane Segmentation
 
-> 편광필름과 CLAHE 전처리, YOLO11 Segmentation을 결합한 야간·우천 차선 인식 시스템
+> 캡스톤디자인에서 시작해 Raspberry Pi 5와 Jetson Orin Nano로 확장한 야간·악천후 실시간 차선 인식 연구
 
-`YOLO11n-seg` · `OpenCV` · `CLAHE` · `Raspberry Pi 5` · `Picamera2`
+`YOLO11n-seg` · `BiSeNetV2` · `OpenCV` · `CLAHE` · `TensorRT` · `Raspberry Pi 5` · `Jetson Orin Nano`
 
-## 문제 정의
+## 프로젝트 개요
 
-야간과 우천 환경에서는 노면 반사광, 낮은 대비, 빗물로 인한 번짐 때문에 차선의 경계가 흐려집니다. 일반 주행 영상으로 학습한 모델은 이 조건에서 흰색·노란색 차선을 놓치기 쉬워, 광학적 노이즈 억제와 영상 대비 개선을 함께 적용했습니다.
+야간과 우천 환경에서는 낮은 조도, 젖은 노면의 반사광, 빗물 번짐으로 차선 경계가 흐려집니다. 이 프로젝트는 **편광필름을 이용한 광학적 반사 억제**, **CLAHE 기반 대비 개선**, **딥러닝 세그멘테이션**을 결합해 악천후 환경에서도 차선을 실시간으로 인식하는 것을 목표로 합니다.
 
-| 기존 한계 | 해결 아이디어 |
-|---|---|
-| ![야간 우천 환경의 기존 한계](https://github.com/user-attachments/assets/afbeddcf-9f4a-4b7b-aa4e-e9979ec06bbe) | ![편광필름과 AI를 결합한 해결 아이디어](https://github.com/user-attachments/assets/455fb96a-5079-43e5-87d7-5b11186ee26c) |
+캡스톤디자인 **「AI기반 악천후 감지 시스템」**으로 구현한 뒤, Raspberry Pi 5 기반 실시간 시스템과 Jetson Orin Nano 기반 모델 비교 연구로 발전시켰습니다.
 
-## 해결 방법
+| 단계 | 플랫폼 | 주요 내용 | 성과 |
+|---|---|---|---|
+| 캡스톤디자인 | Raspberry Pi 기반 프로토타입 | 편광필름·CLAHE·차선 세그멘테이션 결합 | 2025-1학기 캡스톤디자인 결과발표회 **우수상** |
+| 1차 연구 | Raspberry Pi 5 | YOLO 계열 모델 비교 및 실시간 추론 시스템 구현 | 한국전기전자학회 하계학술대회 **제1저자·발표자** |
+| 2차 연구 | Jetson Orin Nano | YOLO11n-seg와 BiSeNetV2 비교, TensorRT FP16 최적화 | 제27회 전자정보통신 학술대회 **제1저자·발표자** |
+
+## 연구 흐름
 
 ```text
-Picamera2 입력
-  → 편광필름으로 노면 반사 억제
+카메라 입력
+  → 편광필름으로 젖은 노면의 반사광 억제
   → LAB 색공간의 L 채널에 CLAHE 적용
-  → YOLO11n-seg로 white_line / yellow_line 분할
-  → 마스크 overlay와 FPS 표시
+  → 딥러닝 모델로 white_line / yellow_line 분할
+  → 임베디드 보드에서 실시간 추론 및 결과 시각화
 ```
 
-### 1. 광학·영상 전처리
+### 1. 캡스톤디자인 — AI기반 악천후 감지 시스템
 
-- 카메라 전면에 편광필름을 적용해 젖은 노면의 반사광을 완화
+- 야간·우천 환경에서 발생하는 반사광과 낮은 대비 문제 정의
+- 편광필름과 CLAHE 전처리를 결합한 차선 인식 파이프라인 설계
+- 데이터 수집·라벨링, 모델 학습, 임베디드 추론, 발표까지 통합 수행
+- 2025-1학기 캡스톤디자인 결과발표회 **우수상** 수상
+- [캡스톤 발표자료](./docs/capstone/presentation.pdf)
+
+### 2. Raspberry Pi 5 — 실시간 차선 인식 시스템
+
+**논문:** 「야간 및 악천후 환경에서의 딥러닝 기반 실시간 차선 인식 시스템」
+
+- AI-Hub 데이터 1,461장과 직접 촬영한 야간·우천 데이터 400장 활용
+- YOLOv5n-seg, YOLOv8n-seg, YOLO11n-seg 성능 비교
+- Raspberry Pi 5와 Picamera2를 이용한 실시간 추론 파이프라인 구현
+- YOLO11n-seg 기준 `mAP50 0.856`, Raspberry Pi 5에서 `1.54 FPS` 기록
+- 기존 모델 대비 **Recall 28.7%p**, **mAP50 11.2%p 향상**
+- **제1저자 및 논문 발표 담당**
+- [논문 PDF](./docs/raspberry-pi/paper.pdf) · [학술대회 포스터](./docs/raspberry-pi/poster.pdf)
+
+### 3. Jetson Orin Nano — 세그멘테이션 모델 비교
+
+**논문:** 「야간 및 악천후 환경에서의 차선 인식용 세그멘테이션 모델 비교」
+
+- Raspberry Pi 기반 연구를 Jetson Orin Nano 환경으로 확장
+- YOLO11n-seg와 경량 시맨틱 세그멘테이션 모델 BiSeNetV2 비교
+- TensorRT 변환 후 FP32·FP16 추론 성능 측정
+- CLAHE 전처리 적용 시 `mIoU`: YOLO11n-seg **0.8572**, BiSeNetV2 **0.8691**
+- FP16 추론 속도: YOLO11n-seg **10.07 FPS**, BiSeNetV2 **12.58 FPS**
+- 정확도와 처리 속도를 종합해 **CLAHE + BiSeNetV2** 조합의 활용 가능성 확인
+- **제1저자 및 논문 발표 담당**
+- [논문 PDF](./docs/jetson-orin-nano/paper.pdf) · [발표자료](./docs/jetson-orin-nano/presentation.pdf)
+
+## 구현 방법
+
+### 광학·영상 전처리
+
+- 카메라 전면의 편광필름으로 젖은 노면의 반사광 완화
 - RGB 영상을 LAB 색공간으로 변환
 - 밝기 정보인 L 채널에 `clipLimit=2.0`, `tileGridSize=(8, 8)` CLAHE 적용
-- 색 정보는 유지하면서 저조도 영역의 국부 대비를 강화
+- 색 정보는 유지하면서 저조도 영역의 국부 대비 강화
 
-### 2. 차선 인스턴스 분할
+### 딥러닝 세그멘테이션
 
-- YOLO11n Segmentation으로 `yellow_line`, `white_line` 클래스 학습
-- bounding box보다 차선 형상을 잘 보존하도록 polygon mask 사용
-- Raspberry Pi 5에서 입력 영상을 640px로 추론
-- 처리 부하를 조절하기 위해 3프레임마다 추론하고, 결과 마스크와 FPS를 실시간 표시
-
-### 3. 임베디드 추론
-
-- Picamera2에서 1024×720 RGB 영상을 수집
-- OpenCV로 CLAHE 전처리와 mask overlay 수행
-- Raspberry Pi 5에서 카메라 입력부터 시각화까지 하나의 파이프라인으로 통합
-- 구현 코드: [`main_clahe.py`](./main_clahe.py)
+- `yellow_line`, `white_line` 클래스를 polygon mask로 라벨링
+- Raspberry Pi 단계에서는 YOLO11n-seg 기반 인스턴스 세그멘테이션 적용
+- Jetson Orin Nano 단계에서는 YOLO11n-seg와 BiSeNetV2를 동일 환경에서 비교
+- TensorRT FP16 최적화로 임베디드 추론 속도 향상
 
 ## 구현 결과
 
@@ -49,33 +81,31 @@ Picamera2 입력
 |---|---|
 | ![기존 모델과 개선 모델의 성능 비교](https://github.com/user-attachments/assets/45b5baf6-c1b4-47af-8f1f-879dd02035cf) | ![야간 및 우천 차선 분할 테스트](https://github.com/user-attachments/assets/8c406475-1547-45e0-9e92-2bac298b65ad) |
 
-- 기존 모델 대비 **Recall 28.7%p 향상**
-- 기존 모델 대비 **mAP50 11.2%p 향상**
-- 야간·우천 환경에서 노란색·흰색 차선을 segmentation mask로 구분
-
-> 위 수치는 프로젝트 실험 조건의 기존 모델과 개선 모델을 비교한 결과입니다. 다른 데이터셋이나 카메라 환경에 그대로 일반화되는 수치는 아닙니다.
+> 성능 수치는 각 논문에 기재된 실험 환경과 데이터셋을 기준으로 하며, 다른 카메라나 데이터 환경에서는 달라질 수 있습니다.
 
 ## 담당 역할
 
-- 팀장으로 문제 정의, 실험 계획, 일정과 발표를 총괄
-- 야간·우천 차선 데이터 수집과 segmentation 라벨링
-- YOLO11n-seg 모델 학습과 성능 비교
-- 편광필름·CLAHE 조합의 전처리 실험
-- Raspberry Pi 5·Picamera2 실시간 추론 코드 구현
+- 팀장으로 문제 정의, 실험 계획, 일정 관리 및 발표 총괄
+- 야간·우천 차선 데이터 직접 수집 및 세그멘테이션 라벨링
+- YOLO 계열 모델과 BiSeNetV2 학습·평가
+- 편광필름과 CLAHE 조합의 전처리 실험
+- Raspberry Pi 5 및 Jetson Orin Nano 추론 환경 구축
+- 두 학술대회 논문 **제1저자**, 논문 작성 및 현장 발표
 
 ## 저장소 구조
 
 ```text
 Night_Rain_Lane_Segmentation/
-├─ castone2_yolov11n_seg.ipynb   # YOLO11 segmentation 학습·검증
-├─ main_clahe.py                  # 카메라·CLAHE·실시간 추론
-├─ best.pt                        # 학습 모델 weight
-└─ docs/                          # 학술대회 논문
+├─ castone2_yolov11n_seg.ipynb       # YOLO11 segmentation 학습·검증
+├─ main_clahe.py                      # 카메라·CLAHE·실시간 추론
+├─ best.pt                            # 학습 모델 weight
+└─ docs/
+   ├─ README.md                       # 논문·발표자료 안내
+   ├─ capstone/                       # 캡스톤디자인 발표자료
+   ├─ raspberry-pi/                   # 하계학술대회 논문·포스터
+   └─ jetson-orin-nano/               # 전자정보통신 학술대회 논문·발표자료
 ```
 
-## 성과와 발표
+## 문서 모음
 
-- 2025 한국전기전자학회 하계학술대회 제1저자
-  - **야간 및 악천후 환경에서의 딥러닝 기반 실시간 차선 인식 시스템**
-  - [논문 PDF](./docs/2025%20하계학술대회%20논문%20-%20야간%20및%20악천후%20환경에서의%20딥러닝%20기반%20실시간%20차선%20인식%20시스템.pdf)
-- 2025-1학기 캡스톤디자인 결과발표회 **우수상**
+논문과 발표자료는 [`docs/README.md`](./docs/README.md)에서 한 번에 확인할 수 있습니다.
